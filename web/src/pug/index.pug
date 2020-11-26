@@ -1,0 +1,25 @@
+doctype html
+html
+  include /../../static/assets/lib/bootstrap.ldui/main/index.pug
+  head
+  body
+    +script("assets/lib/@loadingio/ldquery/main/ldq.min.js")
+    +script("https://cdnjs.cloudflare.com/ajax/libs/BrowserFS/2.0.0/browserfs.min.js")
+    script: :lsc
+      BrowserFS.install window
+      BrowserFS.configure {fs: \LocalStorage}, -> window.fs = fs = require("fs")
+    +script("assets/lib/stylus-browser/dev/stylus.min.js")
+    script: :lsc
+      console.log stylus
+      ld$.fetch "assets/lib/stylus-browser/index.styl", {method: "GET"}, {type: "text"}
+        .then (data) ->
+          if !fs.exists-sync("/node_modules") => fs.mkdir-sync "/node_modules"
+          if !fs.exists-sync("/node_modules/stylus") => fs.mkdir-sync "/node_modules/stylus"
+          if !fs.exists-sync("/node_modules/stylus/lib") => fs.mkdir-sync "/node_modules/stylus/lib"
+          if !fs.exists-sync("/node_modules/stylus/lib/functions") => fs.mkdir-sync "/node_modules/stylus/lib/functions"
+          fs.write-file-sync "/node_modules/stylus/lib/functions/index.styl", data
+          stylus.render(
+            "body { font-size: 1px }"
+            {filename: "index.css"}
+            (e, css) -> console.log(e, css)
+          )

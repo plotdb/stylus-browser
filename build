@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+echo "clean up ..."
+rm -rf dist .built
+mkdir -p dist .built
+mkdir -p web/static/discify/
+echo "browserify stylus (full-paths) ..."
+browserify --full-paths -u fs -i mkdirp -i semver -i source-map-resolve -i source-map -i glob -i sax -i bn -i elliptic -i sha -g unassertify -i assert -r stylus:stylus > ./.built/stylus-full-paths.js
+
+echo "discify stylus ..."
+cat ./.built/stylus-full-paths.js | discify > web/static/discify/index.html
+
+echo "browserify stylus ..."
+# -i debug - only for debugging?
+# -i semver - used only once for checking version
+# -i glob - use in utils to find file
+# -i browserify - not sure how to not depend on it
+
+browserify --standalone stylus -u fs -i mkdirp -i source-map-resolve -i source-map -i sax -i bn -i elliptic -i sha -g unassertify -i assert -r stylus > dist/stylus.js
+
+echo "uglify stylus ..."
+cat dist/stylus.js | npx buble | npx uglifyjs > dist/stylus.min.js
+
+echo "clean up again ..."
+rm -rf .built
+rm -rf web/static/assets/lib/stylus-browser/dev/
+
+echo "copy dist files to web..."
+mkdir -p web/static/assets/lib/stylus-browser/dev/
+cp dist/* web/static/assets/lib/stylus-browser/dev/
+
+echo "result file size..."
+du -hsc dist/*
