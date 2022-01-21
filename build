@@ -16,10 +16,10 @@ echo "browserify stylus ..."
 # -i glob - use in utils to find file
 # -i browserify - not sure how to not depend on it
 
-browserify --standalone stylus -u fs -i mkdirp -i source-map-resolve -i source-map -i sax -i bn -i elliptic -i sha -g unassertify -i assert -r stylus > dist/stylus.js
+browserify --standalone stylus -u fs -i mkdirp -i source-map-resolve -i source-map -i sax -i bn -i elliptic -i sha -g unassertify -i assert -r stylus > dist/index.js
 
 echo "uglify stylus ..."
-cat dist/stylus.js | npx buble | npx uglifyjs > dist/stylus.min.js
+cat dist/index.js | ./node_modules/.bin/buble | ./node_modules/.bin/uglifyjs -m -c > dist/index.min.js
 
 echo "clean up again ..."
 rm -rf .built

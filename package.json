@@ -4,6 +4,8 @@
   "license": "MIT",
   "description": "Builder for Stylus running in browser",
   "version": "0.0.1",
+  "browser": "dist/index.min.js",
+  "main": "dist/index.min.js",
   "files": [
     "dist/**/*"
   ],
@@ -49,10 +51,10 @@
     "root": "web/static/assets/lib",
     "modules": [
       "bootstrap",
-      "bootstrap.ldui",
       "bootstrap.native",
-      "ldview",
+      "@loadingio/bootstrap.ext",
       "@loadingio/ldquery",
+      "ldview",
       "@plotdb/sandbox.js"
     ]
   }
