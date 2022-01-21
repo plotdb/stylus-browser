@@ -19,7 +19,7 @@ echo "browserify stylus ..."
 browserify --standalone stylus -u fs -i mkdirp -i source-map-resolve -i source-map -i sax -i bn -i elliptic -i sha -g unassertify -i assert -r stylus > dist/index.js
 
 echo "uglify stylus ..."
-cat dist/index.js | ./node_modules/.bin/buble | ./node_modules/.bin/uglifyjs -m -c > dist/index.min.js
+cat dist/index.js | ./node_modules/.bin/buble | ./node_modules/.bin/uglifyjs > dist/index.min.js
 
 echo "clean up again ..."
 rm -rf .built
