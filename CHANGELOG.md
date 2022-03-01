@@ -1,5 +1,10 @@
 # Change Logs
 
+## v0.0.3
+
+ - minimize bundle size
+
+
 ## v0.0.2
 
  - rename `stylus.js`, `stylus.min.js` to `index.js` and `index.min.js`
