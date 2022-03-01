@@ -236,7 +236,7 @@ pug_mixins["script"]("assets/lib/stylus-browser/dev/index.min.js");
 ;pug_debug_line = 12;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
 pug_html = pug_html + "\u003Cscript type=\"module\"\u003E";
 ;pug_debug_line = 12;pug_debug_filename = "src\u002Fpug\u002Findex.pug";
-pug_html = pug_html + "stylus.render(\"body { font-size: 1px }\",{filename:\"index.css\"},function(e,n){return console.log(e,n)});\u003C\u002Fscript\u003E\u003C\u002Fbody\u003E\u003C\u002Fhtml\u003E";
+pug_html = pug_html + "var r;r=stylus.render(\"\u002F\u002F- stylus\\nbody { font-size: 1px }\");console.log(r);\u003C\u002Fscript\u003E\u003C\u002Fbody\u003E\u003C\u002Fhtml\u003E";
     }.call(this, "Array" in locals_for_with ?
         locals_for_with.Array :
         typeof Array !== 'undefined' ? Array : undefined, "JSON" in locals_for_with ?

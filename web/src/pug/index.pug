@@ -10,8 +10,18 @@ html
       BrowserFS.configure {fs: \LocalStorage}, -> window.fs = fs = require("fs")
     +script("assets/lib/stylus-browser/dev/index.min.js")
     script(type="module"): :lsc
+      /*stylus = require("stylus")*/
+      /*
       stylus.render(
         "body { font-size: 1px }"
         {filename: "index.css"}
         (e, css) -> console.log(e, css)
+      )*/
+
+      r = stylus.render(
+        """
+        //- stylus
+        body { font-size: 1px }
+        """
       )
+      console.log r
